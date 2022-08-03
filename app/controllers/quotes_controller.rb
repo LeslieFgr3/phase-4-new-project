@@ -3,22 +3,22 @@ class QuotesController < ApplicationController
 
   # GET /quotes
   def index
-    @quotes = Quote.all
+    quotes = Quote.all
 
-    render json: @quotes
-  end
+    render json: quotes, status: :ok
+ end
 
-  # GET /quotes/1
+  # GET quotes/1
   def show
-    render json: @quote
-  end
+    render json: @quote, status: :ok
+ end
 
-  # POST /quotes
+  # POST quotes
   def create
     @quote = Quote.new(quote_params)
 
     if @quote.save
-      render json: @quote, status: :created, location: @quote
+      render json: @quote, status: :created
     else
       render json: @quote.errors, status: :unprocessable_entity
     end
@@ -46,6 +46,6 @@ class QuotesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def quote_params
-      params.require(:quote).permit(:text, :author)
+      params.permit(:text, :author)
     end
 end

@@ -37,7 +37,7 @@ function App() {
           <Login />
         </Route>
         <Route path="/">
-          <MainPage />
+          <MainPage currentUser={currentUser} />
         </Route>
       </Switch>
     </div>

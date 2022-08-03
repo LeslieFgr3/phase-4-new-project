@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-function MainPage() {
+function MainPage({ currentUser }) {
   const [feeling, setFeeling] = useState("");
   const [quote, setQuote] = useState([]);
   // const [currentUser, setCurrentUser] = useState(false);
@@ -29,6 +29,7 @@ function MainPage() {
   };
   function onClick(e) {
     e.preventDefault();
+    if 
     getData();
     createData(quote);
   }
