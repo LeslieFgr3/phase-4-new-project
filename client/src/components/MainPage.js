@@ -29,9 +29,8 @@ function MainPage({ currentUser }) {
   };
   function onClick(e) {
     e.preventDefault();
-    if 
     getData();
-    createData(quote);
+    currentUser ? createData(quote) : alert("Log In!!");
   }
 
   // const updateUser

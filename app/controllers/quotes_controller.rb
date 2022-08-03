@@ -6,31 +6,25 @@ class QuotesController < ApplicationController
     quotes = Quote.all
 
     render json: quotes, status: :ok
- end
+  end
 
   # GET quotes/1
   def show
-    render json: @quote, status: :ok
- end
+    quote = Quote.find(params[:id])
+    render json: quote, status: :ok
+  end
 
   # POST quotes
   def create
-    @quote = Quote.new(quote_params)
-
-    if @quote.save
-      render json: @quote, status: :created
-    else
-      render json: @quote.errors, status: :unprocessable_entity
-    end
+    quote = Quote.create!(quote_params)
+    render json: quote, status: :created
   end
 
   # PATCH/PUT /quotes/1
   def update
-    if @quote.update(quote_params)
-      render json: @quote
-    else
-      render json: @quote.errors, status: :unprocessable_entity
-    end
+    quote = Quote.find(params[:id])
+    quote.update!(quote_params)
+      render json: quote, status: :accepted
   end
 
   # DELETE /quotes/1
@@ -39,10 +33,6 @@ class QuotesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_quote
-      @quote = Quote.find(params[:id])
-    end
 
     # Only allow a list of trusted parameters through.
     def quote_params

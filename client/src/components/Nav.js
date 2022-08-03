@@ -11,6 +11,7 @@ const Navbar = ({ currentUser, updateUser }) => {
       }
     });
   };
+
   return (
     <ul className="nav-list">
       <li className="nav-item">NAME</li>
@@ -23,7 +24,7 @@ const Navbar = ({ currentUser, updateUser }) => {
         {currentUser ? (
           <button onClick={handleLogOut}>Log Out</button>
         ) : (
-          <NavLink to="/login">
+          <NavLink to="/signIn">
             <button>My Account</button>
           </NavLink>
         )}

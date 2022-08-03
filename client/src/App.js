@@ -9,9 +9,10 @@ import Login from "./components/Login";
 function App() {
   const [currentUser, setCurrentUser] = useState(false);
   // const [errors, setErrors] = useState(false);
+  console.log(currentUser);
 
   useEffect(() => {
-    fetch("/authorized_user").then((res) => {
+    fetch("/users").then((res) => {
       if (res.ok) {
         res.json().then((user) => {
           updateUser(user);
@@ -33,8 +34,8 @@ function App() {
         <Route path="/users/new">
           <Signup />
         </Route>
-        <Route path="/login">
-          <Login />
+        <Route path="/signIn">
+          <Login updateUser={updateUser} />
         </Route>
         <Route path="/">
           <MainPage currentUser={currentUser} />

@@ -1,18 +1,15 @@
 class DiariesController < ApplicationController
-  before_action :set_diary, only: [:show]
 
   # GET /diaries
   def index
-    diaries = Diary.all
+    @diaries = Diary.all
 
-    render json: diaries, status: :ok
-  end
-
-  # GET diaries/1
-  def show
-    render json: @diary, status: :created
+    render json: @diaries
   end
 
   private
-
+    # Use callbacks to share common setup or constraints between actions.
+    def set_diary
+      @diary = Diary.find(params[:id])
+    end
 end
