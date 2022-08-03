@@ -1,21 +1,33 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
 
-const Navbar = ({ currentUser }) => {
+const Navbar = ({ currentUser, updateUser }) => {
+  const handleLogOut = () => {
+    fetch("/logout", {
+      method: "DELETE",
+    }).then((res) => {
+      if (res.ok) {
+        updateUser(false);
+      }
+    });
+  };
   return (
     <ul className="nav-list">
-      <li>NAME</li>
-      <li>
-        <link to="/" /> Home
+      <li className="nav-item">NAME</li>
+      <li className="nav-item">
+        <NavLink exact to="/">
+          <button>Home</button>
+        </NavLink>
       </li>
-      {currentUser ? (
-        <li>
-          <link to="/login" /> Log Out
-        </li>
-      ) : (
-        <li>
-          <link to="/login" /> My Account
-        </li>
-      )}
+      <li className="nav-item">
+        {currentUser ? (
+          <button onClick={handleLogOut}>Log Out</button>
+        ) : (
+          <NavLink to="/login">
+            <button>My Account</button>
+          </NavLink>
+        )}
+      </li>
     </ul>
   );
 };

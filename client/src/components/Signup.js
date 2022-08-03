@@ -3,17 +3,15 @@ import { useHistory } from "react-router-dom";
 function SignUp() {
   const [formData, setFormData] = useState({
     username: "",
-    email: "",
     password: "",
   });
   const [errors, setErrors] = useState([]);
   const history = useHistory();
-  const { username, email, password } = formData;
+  const { username, password } = formData;
   function onSubmit(e) {
     e.preventDefault();
     const user = {
       username,
-      email,
       password,
     };
     fetch(`/users`, {
@@ -44,8 +42,6 @@ function SignUp() {
           value={username}
           onChange={handleChange}
         />
-        <label>Email</label>
-        <input type="text" name="email" value={email} onChange={handleChange} />
         <label>Password</label>
         <input
           type="password"

@@ -8,7 +8,7 @@ function LoginForm({ onLogin }) {
     event.preventDefault();
     setIsLoading(true);
     fetch("/login", {
-      methog: "GET",
+      method: "GET",
       headers: {
         "Content-Type": "application/json",
       },
