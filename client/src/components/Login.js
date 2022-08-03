@@ -1,8 +1,10 @@
 import React, { useState } from "react";
+import {useHistory} from "react-router-dom";
 function LoginForm({ onLogin }) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState([]);
+  const history = useHistory();
   const [isLoading, setIsLoading] = useState([false]);
   function handleSubmit(event) {
     event.preventDefault();
@@ -22,7 +24,13 @@ function LoginForm({ onLogin }) {
       }
     });
   }
+
+  function onClick() { 
+
+    history.push("/signup")
+  }
   return (
+  
     <form onSubmit={handleSubmit}>
       <label className="usernameLabel" htmlFor="Username">
         Username
@@ -44,6 +52,9 @@ function LoginForm({ onLogin }) {
       />
       <button variant="fill" color="primary" type="submit">
         {"Login"}
+      </button>
+      <button className ="signup button" variant="fill" color="primary" onClick={onClick} type="submit">
+        {"sign up"} 
       </button>
     </form>
   );

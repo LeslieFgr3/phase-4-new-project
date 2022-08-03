@@ -30,7 +30,7 @@ function App() {
         <Nav currentUser={currentUser} />
       </header>
       <Switch>
-        <Route path="/users/new">
+        <Route path="/signup">
           <Signup />
         </Route>
         <Route path="/login">

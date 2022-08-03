@@ -43,6 +43,7 @@ function SignUp() {
           onChange={handleChange}
         />
         <label>Password</label>
+        
         <input
           type="password"
           name="password"
@@ -50,9 +51,15 @@ function SignUp() {
           onChange={handleChange}
         />
         <input type="submit" value="Sign up!" />
+        <button variant="fill" color="primary" type="submit">
+        {"Login"}
+      </button>
       </form>
       {errors ? errors.map((e) => <div>{e[0] + ": " + e[1]}</div>) : null}
     </>
   );
 }
 export default SignUp;
+
+
+
