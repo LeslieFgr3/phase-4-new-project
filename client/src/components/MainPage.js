@@ -4,7 +4,7 @@ function MainPage() {
   const [feeling, setFeeling] = useState("");
   const [quote, setQuote] = useState([]);
   // const [currentUser, setCurrentUser] = useState(false);
-
+  console.log(feeling);
   function onChange(e) {
     setFeeling(e.target.value);
   }
