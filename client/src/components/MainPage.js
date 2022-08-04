@@ -29,7 +29,7 @@ function MainPage({ currentUser }) {
   };
   function onClick(e) {
     e.preventDefault();
-    if 
+    
     getData();
     createData(quote);
   }
