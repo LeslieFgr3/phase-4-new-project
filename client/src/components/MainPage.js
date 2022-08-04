@@ -4,7 +4,7 @@ import DiaryPage from "./DiaryPage";
 function MainPage({ currentUser }) {
   const [feeling, setFeeling] = useState({
     feeling: "",
-    user_id: currentUser.id,
+    user_id: "",
   });
   const [quote, setQuote] = useState({
     text: "",

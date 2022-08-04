@@ -1,10 +1,12 @@
 import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
 
 function Login({ updateUser }) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState([]);
-  const [isLoading, setIsLoading] = useState([false]);
+  const [isLoading, setIsLoading] = useState(false);
+  const history = useHistory();
 
   function handleSubmit(event) {
     event.preventDefault();
@@ -19,11 +21,13 @@ function Login({ updateUser }) {
       setIsLoading(false);
       if (r.ok) {
         r.json().then((user) => updateUser(user));
+        history.push("/");
       } else {
         r.json().then((err) => setErrors(err.errors));
       }
     });
   }
+
   return (
     <form onSubmit={handleSubmit}>
       <label className="usernameLabel" htmlFor="Username">
