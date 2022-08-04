@@ -28,13 +28,10 @@ function Login({ updateUser }) {
     });
   }
 
-<<<<<<< HEAD
   function onClick() { 
 
     history.push("/signup")
   }
-=======
->>>>>>> e943d4579dd74ba60448d4a258a5a9c1249df109
   return (
   
     <form onSubmit={handleSubmit}>
