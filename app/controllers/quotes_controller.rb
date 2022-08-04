@@ -1,6 +1,6 @@
 class QuotesController < ApplicationController
-  before_action :set_quote, only: [:show, :update, :destroy]
-  skip_before_action :authorized_user, only: [:index, :show]
+  # before_action :set_quote, only: [:show, :update, :destroy]
+  skip_before_action :authorized_user, only: [:index, :create, :show]
 
   # GET /quotes
   def index

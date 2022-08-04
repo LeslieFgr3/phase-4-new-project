@@ -7,12 +7,7 @@ import Signup from "./components/Signup";
 import Login from "./components/Login";
 
 function App() {
-  const [currentUser, setCurrentUser] = useState({
-    id: "",
-    feeling: "",
-    username: "",
-    password: "",
-  });
+  const [currentUser, setCurrentUser] = useState([]);
   // const [errors, setErrors] = useState(false);
   console.log(currentUser);
 
@@ -26,16 +21,16 @@ function App() {
     });
   }, []);
 
-  const updateFeeling = (feeling) => {
-    console.log(feeling);
-    fetch(`/users/${currentUser.id}`, {
-      method: "PATCH",
-      header: { "Content-Type": "application/json" },
-      body: JSON.stringify({ feeling: feeling }),
-    })
-      .then((res) => res.json())
-      .then((data) => console.log(data));
-  };
+  // const updateFeeling = (feeling) => {
+  //   console.log(feeling);
+  //   fetch(`/users/${currentUser.id}`, {
+  //     method: "PATCH",
+  //     header: { "Content-Type": "application/json" },
+  //     body: JSON.stringify({ feeling: feeling }),
+  //   })
+  //     .then((res) => res.json())
+  //     .then((data) => console.log(data));
+  // };
 
   const updateUser = (user) => setCurrentUser(user);
 
@@ -44,7 +39,7 @@ function App() {
   return (
     <div className="App">
       <header>
-        <Nav currentUser={currentUser} updateUser={updateFeeling} />
+        <Nav currentUser={currentUser} updateUser={updateUser} />
       </header>
       <Switch>
         <Route path="/signup">
@@ -54,7 +49,7 @@ function App() {
           <Login updateUser={updateUser} />
         </Route>
         <Route path="/">
-          <MainPage currentUser={currentUser} updateFeeling={updateFeeling} />
+          <MainPage currentUser={currentUser} />
         </Route>
       </Switch>
     </div>

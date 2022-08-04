@@ -12,22 +12,15 @@ class UsersController < ApplicationController
     render json: current_user, status: :ok
   end
 
-  # POST /users
   def create
     user = User.create!(user_params)
     render json: user, status: :created
-  end
-
-  def update
-    user = User.find(params[:id])
-    user.update!(user_params)
-    render json: user, status: :accepted
   end
 
 
   private
     # Only allow a list of trusted parameters through.
     def user_params
-      params.permit(:feeling, :username, :password)
+      params.permit(:username, :password)
     end
 end

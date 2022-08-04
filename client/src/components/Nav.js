@@ -14,7 +14,7 @@ const Navbar = ({ updateUser }) => {
     });
   };
 
-  const onClick = () => {
+  const handleLogIn = () => {
     history.push("/signin");
   };
 
@@ -28,7 +28,7 @@ const Navbar = ({ updateUser }) => {
       </li>
       <li className="nav-item">
         <NavLink to="/signIn">
-          <button onClick={handleLogOut}>Log In</button>
+          <button onClick={handleLogIn}>Log In</button>
         </NavLink>
       </li>
       <li className="nav-item">

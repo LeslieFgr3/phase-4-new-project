@@ -1,18 +1,24 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import DiaryPage from "./DiaryPage";
 
-function MainPage({ currentUser, updateFeeling }) {
-  const [feeling, setFeeling] = useState("");
-  const [quote, setQuote] = useState([]);
-  // const [currentUser, setCurrentUser] = useState(false);
+function MainPage({ currentUser }) {
+  const [feeling, setFeeling] = useState({
+    feeling: "",
+    user_id: currentUser.id,
+  });
+  const [quote, setQuote] = useState({
+    text: "",
+    author: "",
+  });
+
   console.log(feeling);
 
   function onChange(e) {
-    // const { name, value } = e.target;
-    setFeeling(e.target.value);
+    const { name, value } = e.target;
+    setFeeling({ ...feeling, [name]: value });
   }
 
-  const getData = () =>
+  const getQuote = () =>
     fetch("https://type.fit/api/quotes")
       .then((res) => res.json())
       .then((data) => {
@@ -21,13 +27,36 @@ function MainPage({ currentUser, updateFeeling }) {
         setQuote(selectedQuote);
       });
 
-  function onClick(e) {
-    e.preventDefault();
-    getData();
-    currentUser ? updateFeeling(feeling) : alert("Try more? Please Login");
-  }
+  useEffect(() => {
+    fetch("/quotes", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(quote),
+    })
+      .then((res) => res.json())
+      .then((data) => console.log(data));
+  }, [quote]);
 
-  // const updateUser
+  function onClick(e) {
+    console.log(e);
+    e.preventDefault();
+    getQuote();
+    fetch("/feelings", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        ...feeling,
+        user_id: currentUser.id,
+      }),
+    })
+      .then((res) => res.json())
+      .then((data) => console.log(data));
+    // currentUser ? postFeeling(feeling) : alert("Try more? Please Login");
+  }
 
   return (
     <>
