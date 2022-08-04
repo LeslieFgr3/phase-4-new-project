@@ -4,13 +4,13 @@ class FeelingsController < ApplicationController
 
   # GET /feeling
   def index
-    feelings = Feeling.all
+    feeling = Feeling.all
     render json: feelings, status: :ok
   end
 
   # GET/feeling/1
   def show
-    feeling = Feeling.find(params[:id])
+    feeling = Feeling.find_all(session[:user_id])
     render json: feeling, status: :ok
   end
 
