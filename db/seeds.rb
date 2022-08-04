@@ -9,9 +9,11 @@
 User.destroy_all
 Quote.destroy_all
 Diary.destroy_all
-u1 = User.create(feeling: "good", username: "kevin", password: "kevin")
-u2 = User.create(feeling: "awesome", username: "leslie", password: "leslie")
+u1 = User.create(username: "kevin", password: "kevin")
+u2 = User.create(username: "leslie", password: "leslie")
 q1 = Quote.create(text: "nice", author: "Han")
 q2 = Quote.create(text: "well", author: "Gene")
 d1 = Diary.create(user_id: u1.id, quote_id: q2.id)
 d2 = Diary.create(user_id: u2.id, quote_id: q1.id)
+f1 = Feeling.create(feeling: "good", user_id: u1.id)
+f2 = Feeling.create(feeling: "awesome", user_id: u2.id)

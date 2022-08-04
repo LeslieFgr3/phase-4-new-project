@@ -1,17 +1,24 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import DiaryPage from "./DiaryPage";
-import Login from "./Login";
 
 function MainPage({ currentUser }) {
-  const [feeling, setFeeling] = useState("");
-  const [quote, setQuote] = useState([]);
-  // const [currentUser, setCurrentUser] = useState(false);
+  const [feeling, setFeeling] = useState({
+    feeling: "",
+    user_id: "",
+  });
+  const [quote, setQuote] = useState({
+    text: "",
+    author: "",
+  });
+
   console.log(feeling);
+
   function onChange(e) {
-    setFeeling(e.target.value);
+    const { name, value } = e.target;
+    setFeeling({ ...feeling, [name]: value });
   }
 
-  const getData = () =>
+  const getQuote = () =>
     fetch("https://type.fit/api/quotes")
       .then((res) => res.json())
       .then((data) => {
@@ -20,28 +27,43 @@ function MainPage({ currentUser }) {
         setQuote(selectedQuote);
       });
 
-  const createData = (input) => {
-    fetch("http://localhost:3000/users", {
+  useEffect(() => {
+    fetch("/quotes", {
       method: "POST",
-      header: { "Content-Type": "application/json" },
-      body: JSON.stringify(input),
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(quote),
     })
       .then((res) => res.json())
       .then((data) => console.log(data));
-  };
-  function onClick(e) {
-    e.preventDefault();
-    getData();
-    currentUser ? createData(quote) : alert("Try more? Please Login");
-  }
+  }, [quote]);
 
-  // const updateUser
+  function onClick(e) {
+    console.log(e);
+    e.preventDefault();
+    getQuote();
+    fetch("/feelings", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        ...feeling,
+        user_id: currentUser.id,
+      }),
+    })
+      .then((res) => res.json())
+      .then((data) => console.log(data));
+    // currentUser ? postFeeling(feeling) : alert("Try more? Please Login");
+  }
 
   return (
     <>
       <div className="search">
         <input
           type="text"
+          name="feeling"
           className="searchTerm"
           placeholder="How are you feeling today?"
           onChange={onChange}
@@ -56,6 +78,9 @@ function MainPage({ currentUser }) {
         <div>
           <h2>{quote.author}</h2>
         </div>
+      </div>
+      <div>
+        <DiaryPage />
       </div>
     </>
   );
