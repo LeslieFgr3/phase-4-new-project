@@ -11,5 +11,4 @@ Rails.application.routes.draw do
   delete '/logout', to:'sessions#delete' 
   get '/authorized_user', to: 'users#show'
   post '/signup', to: 'users#create'
-
 end
