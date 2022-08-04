@@ -1,13 +1,14 @@
 import React, { useState } from "react";
 import DiaryPage from "./DiaryPage";
-import Login from "./Login";
 
-function MainPage({ currentUser }) {
+function MainPage({ currentUser, updateFeeling }) {
   const [feeling, setFeeling] = useState("");
   const [quote, setQuote] = useState([]);
   // const [currentUser, setCurrentUser] = useState(false);
   console.log(feeling);
+
   function onChange(e) {
+    // const { name, value } = e.target;
     setFeeling(e.target.value);
   }
 
@@ -20,19 +21,10 @@ function MainPage({ currentUser }) {
         setQuote(selectedQuote);
       });
 
-  const createData = (input) => {
-    fetch("http://localhost:3000/users", {
-      method: "POST",
-      header: { "Content-Type": "application/json" },
-      body: JSON.stringify(input),
-    })
-      .then((res) => res.json())
-      .then((data) => console.log(data));
-  };
   function onClick(e) {
     e.preventDefault();
     getData();
-    currentUser ? createData(quote) : alert("Try more? Please Login");
+    currentUser ? updateFeeling(feeling) : alert("Try more? Please Login");
   }
 
   // const updateUser
@@ -42,6 +34,7 @@ function MainPage({ currentUser }) {
       <div className="search">
         <input
           type="text"
+          name="feeling"
           className="searchTerm"
           placeholder="How are you feeling today?"
           onChange={onChange}
@@ -56,6 +49,9 @@ function MainPage({ currentUser }) {
         <div>
           <h2>{quote.author}</h2>
         </div>
+      </div>
+      <div>
+        <DiaryPage />
       </div>
     </>
   );

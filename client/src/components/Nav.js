@@ -1,15 +1,21 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { useHistory, NavLink } from "react-router-dom";
 
-const Navbar = ({ currentUser, updateUser }) => {
+const Navbar = ({ updateUser }) => {
+  const history = useHistory();
   const handleLogOut = () => {
     fetch("/logout", {
       method: "DELETE",
     }).then((res) => {
       if (res.ok) {
         updateUser(null);
+        history.push("/");
       }
     });
+  };
+
+  const onClick = () => {
+    history.push("/signin");
   };
 
   return (
@@ -21,13 +27,14 @@ const Navbar = ({ currentUser, updateUser }) => {
         </NavLink>
       </li>
       <li className="nav-item">
-        {currentUser ? (
+        <NavLink to="/signIn">
+          <button onClick={handleLogOut}>Log In</button>
+        </NavLink>
+      </li>
+      <li className="nav-item">
+        <NavLink to="/">
           <button onClick={handleLogOut}>Log Out</button>
-        ) : (
-          <NavLink to="/signIn">
-            <button>My Account</button>
-          </NavLink>
-        )}
+        </NavLink>
       </li>
     </ul>
   );

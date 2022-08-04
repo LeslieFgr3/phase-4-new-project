@@ -1,7 +1,13 @@
 class UsersController < ApplicationController
-  skip_before_action :authorized_user, only: [:show, :create]
+  skip_before_action :authorized_user, only: [:index, :show, :create, :update]
 
   # GET /users/1
+
+  def index 
+    user = User.all
+    render json: user, status: :ok
+  end
+
   def show
     render json: current_user, status: :ok
   end
@@ -13,8 +19,8 @@ class UsersController < ApplicationController
   end
 
   def update
-    user = User.find_by(feeling: params[:feeling])
-    User.update!(user)
+    user = User.find(params[:id])
+    user.update!(user_params)
     render json: user, status: :accepted
   end
 
@@ -22,6 +28,6 @@ class UsersController < ApplicationController
   private
     # Only allow a list of trusted parameters through.
     def user_params
-      params.permit(:username, :password)
+      params.permit(:feeling, :username, :password)
     end
 end
