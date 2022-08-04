@@ -1,4 +1,6 @@
 class DiariesController < ApplicationController
+  skip_before_action :authorized_user, only: [:index]
+
 
   # GET /diaries
   def index

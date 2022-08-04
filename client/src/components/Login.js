@@ -1,11 +1,12 @@
 import React, { useState } from "react";
-import {useHistory} from "react-router-dom";
+import { useHistory } from "react-router-dom";
+
 function Login({ updateUser }) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
   const history = useHistory();
-  const [isLoading, setIsLoading] = useState([false]);
 
   function handleSubmit(event) {
     event.preventDefault();
@@ -20,16 +21,20 @@ function Login({ updateUser }) {
       setIsLoading(false);
       if (r.ok) {
         r.json().then((user) => updateUser(user));
+        history.push("/");
       } else {
         r.json().then((err) => setErrors(err.errors));
       }
     });
   }
 
+<<<<<<< HEAD
   function onClick() { 
 
     history.push("/signup")
   }
+=======
+>>>>>>> e943d4579dd74ba60448d4a258a5a9c1249df109
   return (
   
     <form onSubmit={handleSubmit}>

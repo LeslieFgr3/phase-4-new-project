@@ -7,7 +7,7 @@ import Signup from "./components/Signup";
 import Login from "./components/Login";
 
 function App() {
-  const [currentUser, setCurrentUser] = useState(null);
+  const [currentUser, setCurrentUser] = useState([]);
   // const [errors, setErrors] = useState(false);
   console.log(currentUser);
 
@@ -20,6 +20,17 @@ function App() {
       }
     });
   }, []);
+
+  // const updateFeeling = (feeling) => {
+  //   console.log(feeling);
+  //   fetch(`/users/${currentUser.id}`, {
+  //     method: "PATCH",
+  //     header: { "Content-Type": "application/json" },
+  //     body: JSON.stringify({ feeling: feeling }),
+  //   })
+  //     .then((res) => res.json())
+  //     .then((data) => console.log(data));
+  // };
 
   const updateUser = (user) => setCurrentUser(user);
 
