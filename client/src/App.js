@@ -7,12 +7,12 @@ import Signup from "./components/Signup";
 import Login from "./components/Login";
 
 function App() {
-  const [currentUser, setCurrentUser] = useState(false);
+  const [currentUser, setCurrentUser] = useState(null);
   // const [errors, setErrors] = useState(false);
   console.log(currentUser);
 
   useEffect(() => {
-    fetch("/users").then((res) => {
+    fetch("/authorized_user").then((res) => {
       if (res.ok) {
         res.json().then((user) => {
           updateUser(user);
@@ -28,10 +28,10 @@ function App() {
   return (
     <div className="App">
       <header>
-        <Nav currentUser={currentUser} />
+        <Nav currentUser={currentUser} updateUser={updateUser} />
       </header>
       <Switch>
-        <Route path="/users/new">
+        <Route path="/signup">
           <Signup />
         </Route>
         <Route path="/signIn">

@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import DiaryPage from "./DiaryPage";
+import Login from "./Login";
 
 function MainPage({ currentUser }) {
   const [feeling, setFeeling] = useState("");
@@ -30,30 +32,32 @@ function MainPage({ currentUser }) {
   function onClick(e) {
     e.preventDefault();
     getData();
-    currentUser ? createData(quote) : alert("Log In!!");
+    currentUser ? createData(quote) : alert("Try more? Please Login");
   }
 
   // const updateUser
 
   return (
-    <div className="search">
-      <input
-        type="text"
-        className="searchTerm"
-        placeholder="How are you feeling today?"
-        onChange={onChange}
-      />
-      <button type="submit" className="searchButton" onClick={onClick}>
-        <i className="fa fa-search"></i>
-      </button>
-      <br />
-      <div>
-        <h1>{quote.text}</h1>
+    <>
+      <div className="search">
+        <input
+          type="text"
+          className="searchTerm"
+          placeholder="How are you feeling today?"
+          onChange={onChange}
+        />
+        <button type="submit" className="searchButton" onClick={onClick}>
+          <i className="fa fa-search"></i>
+        </button>
+        <br />
+        <div>
+          <h1>{quote.text}</h1>
+        </div>
+        <div>
+          <h2>{quote.author}</h2>
+        </div>
       </div>
-      <div>
-        <h2>{quote.author}</h2>
-      </div>
-    </div>
+    </>
   );
 }
 

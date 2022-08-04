@@ -7,7 +7,7 @@ const Navbar = ({ currentUser, updateUser }) => {
       method: "DELETE",
     }).then((res) => {
       if (res.ok) {
-        updateUser(false);
+        updateUser(null);
       }
     });
   };
