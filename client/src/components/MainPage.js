@@ -82,13 +82,9 @@ function MainPage({ currentUser }) {
         <DiaryPage/>
         </div>
       </div>
-<<<<<<< HEAD
-      
-=======
       <div>
         <DiaryPage />
       </div>
->>>>>>> main
     </>
   );
 }
