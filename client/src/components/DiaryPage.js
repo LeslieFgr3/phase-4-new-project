@@ -1,12 +1,17 @@
 import React from "react";
 
 
-function DiaryPage({page}) {
+function DiaryPage({feeling, quoteText, quoteAuthor}) {
+  console.log(feeling);
+  console.log(quoteText);
+  console.log(quoteAuthor);
+
   return ( 
+  
     <div>
-    <p>{}</p>
-      <p>{author}</p>
-      <p> {feeling}</p>
+    <p>{feeling}</p>
+      <p>{quoteText}</p>
+      <p> {quoteAuthor}</p>
       
       
     </div>

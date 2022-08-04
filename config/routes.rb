@@ -10,10 +10,6 @@ Rails.application.routes.draw do
   post '/login', to: 'sessions#create'
   delete '/logout', to:'sessions#delete' 
   get '/authorized_user', to: 'users#show'
-<<<<<<< HEAD
-  
-=======
   post '/signup', to: 'users#create'
->>>>>>> main
 
 end

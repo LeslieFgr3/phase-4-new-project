@@ -10,8 +10,7 @@ function MainPage({ currentUser }) {
     text: "",
     author: "",
   });
-
-  console.log(feeling);
+  const [toggle, setToggle] = useState(false);
 
   function onChange(e) {
     const { name, value } = e.target;
@@ -39,6 +38,10 @@ function MainPage({ currentUser }) {
       .then((data) => console.log(data));
   }, [quote]);
 
+  const handleClick = () => {
+    setToggle(!toggle);
+  };
+
   function onClick(e) {
     console.log(e);
     e.preventDefault();
@@ -55,7 +58,6 @@ function MainPage({ currentUser }) {
     })
       .then((res) => res.json())
       .then((data) => console.log(data));
-    // currentUser ? postFeeling(feeling) : alert("Try more? Please Login");
   }
 
   return (
@@ -78,12 +80,16 @@ function MainPage({ currentUser }) {
         <div>
           <h2>{quote.author}</h2>
         </div>
-<div className="moveDiary"> 
-        <DiaryPage/>
-        </div>
       </div>
       <div>
-        
+        <button onClick={handleClick}>Click Here</button>
+        {toggle ? (
+          <DiaryPage
+            feeling={feeling.feeling}
+            quoteText={quote.text}
+            quoteAuthor={quote.author}
+          />
+        ) : null}
       </div>
     </>
   );
