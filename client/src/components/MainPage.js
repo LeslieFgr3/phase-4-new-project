@@ -83,7 +83,7 @@ function MainPage({ currentUser }) {
         </div>
       </div>
       <div>
-        <DiaryPage />
+        
       </div>
     </>
   );

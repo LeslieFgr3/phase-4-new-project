@@ -28,6 +28,10 @@ function Login({ updateUser }) {
     });
   }
 
+function onClick() {
+ history.push("/signup")
+}
+
   return (
   
     <form onSubmit={handleSubmit}>
