@@ -22,6 +22,7 @@ function SignUp() {
       if (res.ok) {
         res.json().then((user) => {
           history.push(`/users/${user.id}`);
+          console.log(user);
         });
       } else {
         res.json().then((json) => setErrors(Object.entries(json.errors)));

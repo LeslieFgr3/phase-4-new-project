@@ -6,11 +6,12 @@ function LoginForm({ onLogin }) {
   const [errors, setErrors] = useState([]);
   const history = useHistory();
   const [isLoading, setIsLoading] = useState([false]);
+
   function handleSubmit(event) {
     event.preventDefault();
     setIsLoading(true);
     fetch("/login", {
-      method: "GET",
+      method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
@@ -18,7 +19,7 @@ function LoginForm({ onLogin }) {
     }).then((r) => {
       setIsLoading(false);
       if (r.ok) {
-        r.json().then((user) => onLogin(user));
+        r.json().then((user) => updateUser(user));
       } else {
         r.json().then((err) => setErrors(err.errors));
       }
@@ -59,4 +60,4 @@ function LoginForm({ onLogin }) {
     </form>
   );
 }
-export default LoginForm;
+export default Login;
