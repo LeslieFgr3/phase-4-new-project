@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import {useHistory} from "react-router-dom";
-function LoginForm({ onLogin }) {
+
+function Login({ updateUser }) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState([]);
