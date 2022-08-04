@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-
+import {useHistory} from "react-router-dom";
 function Login({ updateUser }) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -43,7 +43,7 @@ function Login({ updateUser }) {
         value={username}
         onChange={(e) => setUsername(e.target.value)}
       />
-      <label htmlFor="password">Password</label>
+      <label className = "passwordLabel" htmlFor="password">Password</label>
       <input
         type="password"
         id="password"
@@ -51,10 +51,10 @@ function Login({ updateUser }) {
         value={password}
         onChange={(e) => setPassword(e.target.value)}
       />
-      <button variant="fill" color="primary" type="submit">
+      <button className = "loginButton" variant="fill" color="primary" type="submit">
         {"Login"}
       </button>
-      <button className ="signup button" variant="fill" color="primary" onClick={onClick} type="submit">
+      <button className ="signupButton" variant="fill" color="primary" onClick={onClick} type="submit">
         {"sign up"} 
       </button>
     </form>

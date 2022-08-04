@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import DiaryPage from "./DiaryPage";
+import DiaryPage from "./DiaryPage"
 import Login from "./Login";
 
 function MainPage({ currentUser }) {
@@ -56,7 +56,11 @@ function MainPage({ currentUser }) {
         <div>
           <h2>{quote.author}</h2>
         </div>
+<div className="moveDiary"> 
+        <DiaryPage/>
+        </div>
       </div>
+      
     </>
   );
 }

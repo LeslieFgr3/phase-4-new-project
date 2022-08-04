@@ -21,6 +21,7 @@ body {
   border-radius: 5px 0 0 5px;
   outline: none;
   color: #577d6b;
+  top: 100px;
 }
 
 .searchTerm:focus {
@@ -72,3 +73,46 @@ body {
   margin-right: auto;
   margin-left: 2rem;
 }
+
+h1.diaryTitle {
+  position:relative;
+  left:-200px;
+   top:100px;
+   text-decoration: underline overline;
+   font-size: 40px;
+
+   
+}
+
+.signupButton {
+  margin:10px;
+}
+
+.loginButton {
+  margin:10px;
+}
+
+.passwordLabel {
+  margin:10px;
+}
+
+.usernameLabel {
+  margin:10px;
+}
+
+.usernameLabel2 {
+  margin:10px;
+}
+
+.passwordLabel2 {
+  margin:10px;
+}
+
+.loginButton2 {
+  margin:10px;
+}
+
+.signupButton {
+  margin:10px;
+}
+
