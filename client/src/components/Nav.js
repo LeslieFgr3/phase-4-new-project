@@ -7,10 +7,11 @@ const Navbar = ({ currentUser, updateUser }) => {
       method: "DELETE",
     }).then((res) => {
       if (res.ok) {
-        updateUser(false);
+        updateUser(null);
       }
     });
   };
+
   return (
     <ul className="nav-list">
       <li className="nav-item">NAME</li>
@@ -23,7 +24,7 @@ const Navbar = ({ currentUser, updateUser }) => {
         {currentUser ? (
           <button onClick={handleLogOut}>Log Out</button>
         ) : (
-          <NavLink to="/login">
+          <NavLink to="/signIn">
             <button>My Account</button>
           </NavLink>
         )}

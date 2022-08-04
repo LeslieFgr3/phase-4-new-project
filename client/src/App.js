@@ -7,8 +7,9 @@ import Signup from "./components/Signup";
 import Login from "./components/Login";
 
 function App() {
-  const [currentUser, setCurrentUser] = useState(false);
+  const [currentUser, setCurrentUser] = useState(null);
   // const [errors, setErrors] = useState(false);
+  console.log(currentUser);
 
   useEffect(() => {
     fetch("/authorized_user").then((res) => {
@@ -27,14 +28,14 @@ function App() {
   return (
     <div className="App">
       <header>
-        <Nav currentUser={currentUser} />
+        <Nav currentUser={currentUser} updateUser={updateUser} />
       </header>
       <Switch>
         <Route path="/signup">
           <Signup />
         </Route>
-        <Route path="/login">
-          <Login />
+        <Route path="/signIn">
+          <Login updateUser={updateUser} />
         </Route>
         <Route path="/">
           <MainPage currentUser={currentUser} />
