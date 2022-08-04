@@ -80,16 +80,12 @@ function MainPage({ currentUser }) {
         <div>
           <h2>{quote.author}</h2>
         </div>
+<div className="moveDiary"> 
+        <DiaryPage/>
+        </div>
       </div>
       <div>
-        <button onClick={handleClick}>Click Here</button>
-        {toggle ? (
-          <DiaryPage
-            feeling={feeling.feeling}
-            quoteText={quote.text}
-            quoteAuthor={quote.author}
-          />
-        ) : null}
+        
       </div>
     </>
   );

@@ -36,14 +36,14 @@ function SignUp() {
   return (
     <>
       <form onSubmit={onSubmit}>
-        <label>Username</label>
+        <label className ="usernameLabel2" >Username</label>
         <input
           type="text"
           name="username"
           value={username}
           onChange={handleChange}
         />
-        <label>Password</label>
+        <label className="passwordLabel2">Password</label>
         
         <input
           type="password"
@@ -51,8 +51,8 @@ function SignUp() {
           value={password}
           onChange={handleChange}
         />
-        <input type="submit" value="Sign up!" />
-        <button variant="fill" color="primary" type="submit">
+        <input className="signupButton" type="submit" value="Sign up!" />
+        <button className = "loginButton2"variant="fill" color="primary" type="submit">
         {"Login"}
       </button>
       </form>
