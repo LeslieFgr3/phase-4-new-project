@@ -33,6 +33,8 @@ function Login({ updateUser }) {
     history.push("/signup");
   }
 
+    history.push("/signup")
+  }
   return (
     <Segment>
       <Form onSubmit={handleSubmit}>

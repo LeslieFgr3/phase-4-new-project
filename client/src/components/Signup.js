@@ -38,24 +38,31 @@ function SignUp({ updateUser }) {
   return (
     <>
       <form onSubmit={onSubmit}>
-        <label>Username</label>
+        <label className ="usernameLabel2" >Username</label>
         <input
           type="text"
           name="username"
           value={username}
           onChange={handleChange}
         />
-        <label>Password</label>
+        <label className="passwordLabel2">Password</label>
+        
         <input
           type="password"
           name="password"
           value={password}
           onChange={handleChange}
         />
-        <input type="submit" value="Sign up!" />
+        <input className="signupButton" type="submit" value="Sign up!" />
+        <button className = "loginButton2"variant="fill" color="primary" type="submit">
+        {"Login"}
+      </button>
       </form>
       {errors ? errors.map((e) => <div>{e[0] + ": " + e[1]}</div>) : null}
     </>
   );
 }
 export default SignUp;
+
+
+
