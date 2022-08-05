@@ -1,11 +1,11 @@
 /* MainPage */
 @import url(https://fonts.googleapis.com/css?family=Open+Sans);
 
-/* body {
+body {
   background: #f2f2f2;
   font-family: "Open Sans", sans-serif;
-<<<<<<< HEAD
-} */
+}
+*/
 
 /* NavBar */
 .nav-list {
@@ -45,12 +45,14 @@ body {
   font-family: "Helvetica Neue", Helvetica, sans-serif;
   font-size: 20px;
   font-weight: normal;
-  max-width: 450px;
+  /* max-width: 450px; */
   margin: 50px auto;
   display: flex;
   flex-direction: column;
   background-color: var(--page-background);
 }
+
+@import url("https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300&display=swap");
 
 p {
   max-width: 255px;
@@ -60,6 +62,7 @@ p {
   position: relative;
   padding: 10px 20px;
   border-radius: 25px;
+  font-family: "Source Sans Pro", sans-serif;
 }
 p::before,
 p::after {

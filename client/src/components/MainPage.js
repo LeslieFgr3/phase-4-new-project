@@ -16,22 +16,24 @@ function MainPage({ currentUser }) {
   });
   const [toggle, setToggle] = useState(false);
   const history = useHistory();
-
-  const [counter, setCounter] = useState(0);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCounter((prevCounter) => prevCounter + 1);
-    }, 1000);
-    if (counter === 5) return () => clearInterval(interval);
-  }, []);
-
-  console.log(counter);
+  const [trigger, setTrigger] = useState(false);
 
   function onChange(e) {
     const { name, value } = e.target;
     setFeeling({ ...feeling, [name]: value });
   }
+
+  const [counter, setCounter] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCounter((prev) => prev + 1);
+      console.log(counter);
+      if (counter === 5) return () => clearInterval(interval);
+    }, 1000);
+  }, []);
+
+  console.log(counter);
 
   console.log(currentUser);
 
@@ -87,14 +89,15 @@ function MainPage({ currentUser }) {
     console.log(e);
     e.preventDefault();
     getQuote();
+    setTrigger(!trigger);
   }
 
   return (
     <>
-      {counter === 3 ? (
+      {counter >= 2 ? (
         <p className="send">Hey There! How are you feeling today?</p>
       ) : null}
-      {feeling.feeling ? (
+      {counter >= 4 ? (
         <div className="search">
           <input
             type="text"
@@ -108,18 +111,25 @@ function MainPage({ currentUser }) {
           </Button>
         </div>
       ) : null}
-
-      <p className="send">You are {feeling.feeling}, today!!</p>
-      <p className="send">Let me tell you what!</p>
-      <p className="send">{quote.author} says ...</p>
-      <p className="send">
-        <strong>"</strong> {quote.text}
-        <strong>"</strong>
-      </p>
+      {trigger ? (
+        <>
+          <p className="send">You are {feeling.feeling}, today!!</p>
+          <p className="send">Let me tell you what!</p>
+          <p className="send">
+            {quote.author ? quote.author : "Someone"} says ...
+          </p>
+          <p className="send">
+            <strong>"</strong> {quote.text}
+            <strong>"</strong>
+          </p>
+        </>
+      ) : null}
       {currentUser === null ? null : (
         <>
           <h3>Welcome {currentUser.username}</h3>
-          <button onClick={handleClick}>My Diary Page</button>{" "}
+          <Button primary onClick={handleClick}>
+            My Diary Page
+          </Button>{" "}
         </>
       )}
       {toggle && currentUser ? (
