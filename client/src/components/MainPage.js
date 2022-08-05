@@ -3,7 +3,7 @@ import { useHistory } from "react-router-dom";
 import DiaryPage from "./DiaryPage";
 import { Button } from "semantic-ui-react";
 
-function MainPage({ currentUser, counter, setCounter }) {
+function MainPage({ currentUser }) {
   const [feeling, setFeeling] = useState({
     feeling: "",
     content: "",
@@ -22,6 +22,18 @@ function MainPage({ currentUser, counter, setCounter }) {
     const { name, value } = e.target;
     setFeeling({ ...feeling, [name]: value });
   }
+
+  const [counter, setCounter] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCounter((prev) => prev + 1);
+      console.log(counter);
+      if (counter === 5) return () => clearInterval(interval);
+    }, 1000);
+  }, []);
+
+  console.log(counter);
 
   console.log(currentUser);
 
@@ -80,18 +92,6 @@ function MainPage({ currentUser, counter, setCounter }) {
     setTrigger(!trigger);
   }
 
-  // return (
-  //   <div>
-  //     <button
-  //       onClick={() => {
-  //         setCounter(counter + 1);
-  //       }}
-  //     >
-  //       count is {counter}
-  //     </button>
-  //   </div>
-  // );
-
   return (
     <>
       {counter >= 2 ? (
@@ -127,7 +127,9 @@ function MainPage({ currentUser, counter, setCounter }) {
       {currentUser === null ? null : (
         <>
           <h3>Welcome {currentUser.username}</h3>
-          <button onClick={handleClick}>My Diary Page</button>{" "}
+          <Button primary onClick={handleClick}>
+            My Diary Page
+          </Button>{" "}
         </>
       )}
       {toggle && currentUser ? (
