@@ -19,7 +19,7 @@ function DiaryPage({ currentUser }) {
     <DiaryCard key={item.id} card={item} />
   ));
 
-  return <Card.Group itemsPerRow={6}>{eachDiary}</Card.Group>;
+  return <Card.Group itemsPerRow={5}>{eachDiary}</Card.Group>;
 }
 
 export default DiaryPage;

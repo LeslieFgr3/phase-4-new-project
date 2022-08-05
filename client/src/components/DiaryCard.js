@@ -8,12 +8,14 @@ function DiaryCard({ card }) {
 
   return (
     <Card color="blue">
-      <div className="card-container">
-        <div className="card-date">Date: {date}</div>
-        <div className="card-feeling">{feeling}</div>
-        <div className="card-quote">{content}</div>
-        <div className="card-author">{writer}</div>
-      </div>
+      <Card.Content className="card-container">
+        <Card.Header className="card-date"> {date}</Card.Header>
+        <Card.Description className="card-feeling">
+          I am {feeling}
+        </Card.Description>
+        <Card.Description className="card-quote">{content}</Card.Description>
+        <Card.Meta className="card-author">{writer}</Card.Meta>
+      </Card.Content>
     </Card>
   );
 }

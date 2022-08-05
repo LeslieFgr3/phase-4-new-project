@@ -23,7 +23,7 @@ const Navbar = ({ updateUser, currentUser }) => {
 
   return (
     <ul className="nav-list">
-      <li className="nav-item">NAME</li>
+      <li className="nav-item">Day By Day</li>
       <li className="nav-item">
         <Button primary>Home</Button>
       </li>
