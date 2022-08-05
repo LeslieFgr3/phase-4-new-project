@@ -21,6 +21,16 @@ function App() {
     });
   }, []);
 
+  const [counter, setCounter] = useState(0);
+
+  useEffect(() => {}, []);
+
+  const interval = setInterval(() => {
+    setCounter(counter + 1);
+    console.log("counter", counter, typeof counter);
+    if (counter === 5) clearInterval(interval);
+  }, 1000);
+
   // const updateFeeling = (feeling) => {
   //   console.log(feeling);
   //   fetch(`/users/${currentUser.id}`, {
@@ -37,6 +47,12 @@ function App() {
   // if (errors) return <h1>{errors}</h1>;
 
   return (
+    <div>
+      <h1>{counter}</h1>
+    </div>
+  );
+
+  return (
     <div className="App">
       <header>
         <Nav currentUser={currentUser} updateUser={updateUser} />
@@ -49,7 +65,11 @@ function App() {
           <Login updateUser={updateUser} />
         </Route>
         <Route path="/">
-          <MainPage currentUser={currentUser} />
+          <MainPage
+            currentUser={currentUser}
+            counter={counter}
+            setCounter={setCounter}
+          />
         </Route>
       </Switch>
     </div>

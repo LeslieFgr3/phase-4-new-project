@@ -1,10 +1,10 @@
 /* MainPage */
 @import url(https://fonts.googleapis.com/css?family=Open+Sans);
 
-/* body {
+body {
   background: #f2f2f2;
   font-family: "Open Sans", sans-serif;
-} */
+}
 
 /* NavBar */
 .nav-list {
@@ -44,7 +44,7 @@ body {
   font-family: "Helvetica Neue", Helvetica, sans-serif;
   font-size: 20px;
   font-weight: normal;
-  max-width: 450px;
+  /* max-width: 450px; */
   margin: 50px auto;
   display: flex;
   flex-direction: column;

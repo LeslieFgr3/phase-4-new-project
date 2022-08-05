@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
+import { Form, Button, Segment } from "semantic-ui-react";
+
 function SignUp({ updateUser }) {
   const [formData, setFormData] = useState({
     username: "",
@@ -36,26 +38,33 @@ function SignUp({ updateUser }) {
     setFormData({ ...formData, [name]: value });
   };
   return (
-    <>
-      <form onSubmit={onSubmit}>
-        <label>Username</label>
-        <input
-          type="text"
-          name="username"
-          value={username}
-          onChange={handleChange}
-        />
-        <label>Password</label>
-        <input
-          type="password"
-          name="password"
-          value={password}
-          onChange={handleChange}
-        />
-        <input type="submit" value="Sign up!" />
-      </form>
+    <Segment>
+      <Form onSubmit={onSubmit}>
+        <Form.Group>
+          <label>Username</label>
+          <Form.Input
+            type="text"
+            name="username"
+            value={username}
+            onChange={handleChange}
+          />
+          <br />
+        </Form.Group>
+        <Form.Group>
+          <label>Password</label>
+          <Form.Input
+            type="password"
+            name="password"
+            value={password}
+            onChange={handleChange}
+          />
+        </Form.Group>
+        <Button variant="fill" primary type="submit">
+          Sign Up
+        </Button>
+      </Form>
       {errors ? errors.map((e) => <div>{e[0] + ": " + e[1]}</div>) : null}
-    </>
+    </Segment>
   );
 }
 export default SignUp;
