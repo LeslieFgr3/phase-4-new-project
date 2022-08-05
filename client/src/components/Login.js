@@ -28,6 +28,10 @@ function Login({ updateUser }) {
     });
   }
 
+  function onClick() {
+    history.push("/signup");
+  }
+
   return (
     <form onSubmit={handleSubmit}>
       <label className="usernameLabel" htmlFor="Username">
@@ -50,6 +54,15 @@ function Login({ updateUser }) {
       />
       <button variant="fill" color="primary" type="submit">
         {"Login"}
+      </button>
+      <button
+        className="signupButton"
+        variant="fill"
+        color="primary"
+        onClick={onClick}
+        type="submit"
+      >
+        {"sign up"}
       </button>
     </form>
   );
