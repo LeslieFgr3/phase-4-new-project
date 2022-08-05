@@ -43,7 +43,7 @@ function App() {
       </header>
       <Switch>
         <Route path="/signup">
-          <Signup />
+          <Signup updateUser={updateUser} />
         </Route>
         <Route path="/signIn">
           <Login updateUser={updateUser} />

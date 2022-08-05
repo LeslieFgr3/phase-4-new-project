@@ -51,7 +51,7 @@ body {
 
 /* NavBar */
 .nav-list {
-  background-color: #d2e4f1;
+  background-color: #f2f2f0;
   box-shadow: 0px 0px 10px var(--clr-gray200);
   margin: 0;
   padding: 1rem 0;
@@ -64,55 +64,33 @@ body {
   list-style: none;
   margin-right: 2rem;
   font-size: small;
+  color: #272e4f;
 }
 .nav-item a {
   text-decoration: none;
-  color: black;
+  color: #2c365d;
 }
 .nav-item:first-child {
   margin-right: auto;
   margin-left: 2rem;
 }
 
-h1.diaryTitle {
-  position:relative;
-  left:-200px;
-   top:100px;
-   text-decoration: underline overline;
-   font-size: 40px;
+/* 
+const CardExampleColored = () => (
+  <Card.Group itemsPerRow={4}>
+    <Card color='red' image={src} />
+    <Card color='orange' image={src} />
+    <Card color='yellow' image={src} />
+    <Card color='olive' image={src} />
+    <Card color='green' image={src} />
+    <Card color='teal' image={src} />
+    <Card color='blue' image={src} />
+    <Card color='violet' image={src} />
+    <Card color='purple' image={src} />
+    <Card color='pink' image={src} />
+    <Card color='brown' image={src} />
+    <Card color='grey' image={src} />
+  </Card.Group>
+)
 
-   
-}
-
-.signupButton {
-  margin:10px;
-}
-
-.loginButton {
-  margin:10px;
-}
-
-.passwordLabel {
-  margin:10px;
-}
-
-.usernameLabel {
-  margin:10px;
-}
-
-.usernameLabel2 {
-  margin:10px;
-}
-
-.passwordLabel2 {
-  margin:10px;
-}
-
-.loginButton2 {
-  margin:10px;
-}
-
-.signupButton {
-  margin:10px;
-}
-
+export default CardExampleColored */

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
-function SignUp() {
+function SignUp({ updateUser }) {
   const [formData, setFormData] = useState({
     username: "",
     password: "",
@@ -8,6 +8,7 @@ function SignUp() {
   const [errors, setErrors] = useState([]);
   const history = useHistory();
   const { username, password } = formData;
+
   function onSubmit(e) {
     e.preventDefault();
     const user = {
@@ -22,6 +23,7 @@ function SignUp() {
       if (res.ok) {
         res.json().then((user) => {
           history.push(`/users/${user.id}`);
+          updateUser(user);
           console.log(user);
         });
       } else {
