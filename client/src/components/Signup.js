@@ -8,6 +8,7 @@ function SignUp({ updateUser }) {
   const [errors, setErrors] = useState([]);
   const history = useHistory();
   const { username, password } = formData;
+
   function onSubmit(e) {
     e.preventDefault();
     const user = {

@@ -79,6 +79,7 @@ function MainPage({ currentUser }) {
 
   return (
     <>
+      <p></p>
       <div className="search">
         <input
           type="text"

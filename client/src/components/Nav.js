@@ -1,8 +1,8 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
+import { Button } from "semantic-ui-react";
 
 const Navbar = ({ updateUser, currentUser }) => {
-  // const [isLoggedIn, setIsLoggedIn] = useState("")
   const history = useHistory();
   const handleLogOut = () => {
     fetch("/logout", {
@@ -25,9 +25,12 @@ const Navbar = ({ updateUser, currentUser }) => {
     <ul className="nav-list">
       <li className="nav-item">NAME</li>
       <li className="nav-item">
-        <button onClick={handleClick}>
+        <Button primary>Home</Button>
+      </li>
+      <li className="nav-item">
+        <Button primary onClick={handleClick}>
           {currentUser ? "Log Out" : "Log In"}
-        </button>
+        </Button>
       </li>
     </ul>
   );

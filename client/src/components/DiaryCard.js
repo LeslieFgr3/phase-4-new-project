@@ -7,7 +7,7 @@ function DiaryCard({ card }) {
   console.log(date);
 
   return (
-    <Card>
+    <Card color="blue">
       <div className="card-container">
         <div className="card-date">Date: {date}</div>
         <div className="card-feeling">{feeling}</div>
