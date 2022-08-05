@@ -17,13 +17,16 @@ function MainPage({ currentUser }) {
   const [toggle, setToggle] = useState(false);
   const history = useHistory();
   const [trigger, setTrigger] = useState(false);
+  const [counter, setCounter] = useState(0);
+  const styleObj = {
+    fontSize: 20,
+    fontWeight: "bold",
+  };
 
   function onChange(e) {
     const { name, value } = e.target;
     setFeeling({ ...feeling, [name]: value });
   }
-
-  const [counter, setCounter] = useState(0);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -95,7 +98,9 @@ function MainPage({ currentUser }) {
   return (
     <>
       {counter >= 2 ? (
-        <p className="send">Hey There! How are you feeling today?</p>
+        <p className="send" style={styleObj}>
+          Hey There! How are you feeling today?
+        </p>
       ) : null}
       {counter >= 4 ? (
         <div className="search">
