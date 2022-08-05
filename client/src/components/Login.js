@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
+import { Form } from "semantic-ui-react";
 
 function Login({ updateUser }) {
   const [username, setUsername] = useState("");
@@ -33,38 +34,40 @@ function Login({ updateUser }) {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
-      <label className="usernameLabel" htmlFor="Username">
-        Username
-      </label>
-      <input
-        type="text"
-        id="username"
-        autoComplete="off"
-        value={username}
-        onChange={(e) => setUsername(e.target.value)}
-      />
-      <label htmlFor="password">Password</label>
-      <input
-        type="password"
-        id="password"
-        autoComplete="current-password"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-      />
-      <button variant="fill" color="primary" type="submit">
-        {"Login"}
-      </button>
-      <button
-        className="signupButton"
-        variant="fill"
-        color="primary"
-        onClick={onClick}
-        type="submit"
-      >
-        {"sign up"}
-      </button>
-    </form>
+    <Form onSubmit={handleSubmit}>
+      <Form.Group widths="equal">
+        <label className="usernameLabel" htmlFor="Username">
+          Username
+        </label>
+        <Form.Input
+          type="text"
+          id="username"
+          autoComplete="off"
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
+        />
+        <label htmlFor="password">Password</label>
+        <Form.Input
+          type="password"
+          id="password"
+          autoComplete="current-password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        />
+        <button variant="fill" color="primary" type="submit">
+          {"Login"}
+        </button>
+        <button
+          className="signupButton"
+          variant="fill"
+          color="primary"
+          onClick={onClick}
+          type="submit"
+        >
+          {"Sign Up"}
+        </button>
+      </Form.Group>
+    </Form>
   );
 }
 export default Login;

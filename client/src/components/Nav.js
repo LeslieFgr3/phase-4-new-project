@@ -1,7 +1,8 @@
 import React from "react";
-import { useHistory, NavLink } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
-const Navbar = ({ updateUser }) => {
+const Navbar = ({ updateUser, currentUser }) => {
+  // const [isLoggedIn, setIsLoggedIn] = useState("")
   const history = useHistory();
   const handleLogOut = () => {
     fetch("/logout", {
@@ -10,31 +11,23 @@ const Navbar = ({ updateUser }) => {
       if (res.ok) {
         updateUser(null);
         history.push("/");
+      } else {
+        updateUser(null);
       }
     });
   };
 
-  const handleLogIn = () => {
-    history.push("/signin");
+  const handleClick = () => {
+    currentUser ? handleLogOut() : history.push("/signin");
   };
 
   return (
     <ul className="nav-list">
       <li className="nav-item">NAME</li>
       <li className="nav-item">
-        <NavLink exact to="/">
-          <button>Home</button>
-        </NavLink>
-      </li>
-      <li className="nav-item">
-        <NavLink to="/signIn">
-          <button onClick={handleLogIn}>Log In</button>
-        </NavLink>
-      </li>
-      <li className="nav-item">
-        <NavLink to="/">
-          <button onClick={handleLogOut}>Log Out</button>
-        </NavLink>
+        <button onClick={handleClick}>
+          {currentUser ? "Log Out" : "Log In"}
+        </button>
       </li>
     </ul>
   );

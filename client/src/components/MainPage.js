@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useHistory } from "react-router-dom";
 import DiaryPage from "./DiaryPage";
 
 function MainPage({ currentUser }) {
@@ -13,11 +14,14 @@ function MainPage({ currentUser }) {
     author: "",
   });
   const [toggle, setToggle] = useState(false);
+  const history = useHistory();
 
   function onChange(e) {
     const { name, value } = e.target;
     setFeeling({ ...feeling, [name]: value });
   }
+
+  console.log(currentUser);
 
   const getQuote = () =>
     fetch("https://type.fit/api/quotes")
@@ -95,8 +99,18 @@ function MainPage({ currentUser }) {
         </div>
       </div>
       <div>
-        <button onClick={handleClick}>Click Here</button>
-        {toggle ? <DiaryPage /> : null}
+        {currentUser === null ? null : (
+          <>
+            <h3>Welcome {currentUser.username}</h3>
+            <button onClick={handleClick}>My Diary Page</button>{" "}
+          </>
+        )}
+
+        {toggle && currentUser ? (
+          <DiaryPage currentUser={currentUser} />
+        ) : (
+          history.push("/")
+        )}
       </div>
     </>
   );
