@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import DiaryPage from "./DiaryPage";
+import { Button } from "semantic-ui-react";
 
 function MainPage({ currentUser }) {
   const [feeling, setFeeling] = useState({
@@ -15,6 +16,17 @@ function MainPage({ currentUser }) {
   });
   const [toggle, setToggle] = useState(false);
   const history = useHistory();
+
+  const [counter, setCounter] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCounter((prevCounter) => prevCounter + 1);
+    }, 1000);
+    if (counter === 5) return () => clearInterval(interval);
+  }, []);
+
+  console.log(counter);
 
   function onChange(e) {
     const { name, value } = e.target;
@@ -79,40 +91,42 @@ function MainPage({ currentUser }) {
 
   return (
     <>
-      <p></p>
-      <div className="search">
-        <input
-          type="text"
-          name="feeling"
-          className="searchTerm"
-          placeholder="How are you feeling today?"
-          onChange={onChange}
-        />
-        <button type="submit" className="searchButton" onClick={onClick}>
-          <i className="fa fa-search"></i>
-        </button>
-        <br />
-        <div>
-          <h1>{quote.text}</h1>
+      {counter === 3 ? (
+        <p className="send">Hey There! How are you feeling today?</p>
+      ) : null}
+      {feeling.feeling ? (
+        <div className="search">
+          <input
+            type="text"
+            name="feeling"
+            className="searchTerm"
+            placeholder="How are you feeling today?"
+            onChange={onChange}
+          />
+          <Button primary type="submit" className="B" onClick={onClick}>
+            <i className="fa fa-search"></i>
+          </Button>
         </div>
-        <div>
-          <h2>{quote.author}</h2>
-        </div>
-      </div>
-      <div>
-        {currentUser === null ? null : (
-          <>
-            <h3>Welcome {currentUser.username}</h3>
-            <button onClick={handleClick}>My Diary Page</button>{" "}
-          </>
-        )}
+      ) : null}
 
-        {toggle && currentUser ? (
-          <DiaryPage currentUser={currentUser} />
-        ) : (
-          history.push("/")
-        )}
-      </div>
+      <p className="send">You are {feeling.feeling}, today!!</p>
+      <p className="send">Let me tell you what!</p>
+      <p className="send">{quote.author} says ...</p>
+      <p className="send">
+        <strong>"</strong> {quote.text}
+        <strong>"</strong>
+      </p>
+      {currentUser === null ? null : (
+        <>
+          <h3>Welcome {currentUser.username}</h3>
+          <button onClick={handleClick}>My Diary Page</button>{" "}
+        </>
+      )}
+      {toggle && currentUser ? (
+        <DiaryPage currentUser={currentUser} />
+      ) : (
+        history.push("/")
+      )}
     </>
   );
 }
