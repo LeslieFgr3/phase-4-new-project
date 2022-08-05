@@ -4,7 +4,7 @@ class FeelingsController < ApplicationController
 
   # GET /feeling
   def index
-    feeling = Feeling.all
+    feelings = Feeling.all
     render json: feelings, status: :ok
   end
 
@@ -30,6 +30,6 @@ class FeelingsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def feeling_params
-      params.permit(:id, :feeling, :user_id)
+      params.permit(:id, :feeling, :user_id, :content, :writer)
     end
 end

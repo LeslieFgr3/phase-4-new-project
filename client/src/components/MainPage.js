@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from "react";
+import { useHistory } from "react-router-dom";
 import DiaryPage from "./DiaryPage";
 
 function MainPage({ currentUser }) {
   const [feeling, setFeeling] = useState({
     feeling: "",
+    content: "",
+    writer: "",
     user_id: "",
   });
   const [quote, setQuote] = useState({
@@ -11,11 +14,14 @@ function MainPage({ currentUser }) {
     author: "",
   });
   const [toggle, setToggle] = useState(false);
+  const history = useHistory();
 
   function onChange(e) {
     const { name, value } = e.target;
     setFeeling({ ...feeling, [name]: value });
   }
+
+  console.log(currentUser);
 
   const getQuote = () =>
     fetch("https://type.fit/api/quotes")
@@ -38,14 +44,7 @@ function MainPage({ currentUser }) {
       .then((data) => console.log(data));
   }, [quote]);
 
-  const handleClick = () => {
-    setToggle(!toggle);
-  };
-
-  function onClick(e) {
-    console.log(e);
-    e.preventDefault();
-    getQuote();
+  const postFeelings = (feeling) => {
     fetch("/feelings", {
       method: "POST",
       headers: {
@@ -53,15 +52,34 @@ function MainPage({ currentUser }) {
       },
       body: JSON.stringify({
         ...feeling,
+        content: quote.text,
+        writer: quote.author,
         user_id: currentUser.id,
       }),
     })
       .then((res) => res.json())
       .then((data) => console.log(data));
+  };
+
+  const handleClick = () => {
+    setToggle(!toggle);
+    setFeeling({
+      feeling: feeling.feeling,
+      content: quote.text,
+      writer: quote.author,
+    });
+    postFeelings(feeling);
+  };
+
+  function onClick(e) {
+    console.log(e);
+    e.preventDefault();
+    getQuote();
   }
 
   return (
     <>
+      <p></p>
       <div className="search">
         <input
           type="text"
@@ -80,12 +98,20 @@ function MainPage({ currentUser }) {
         <div>
           <h2>{quote.author}</h2>
         </div>
-<div className="moveDiary"> 
-        <DiaryPage/>
-        </div>
       </div>
       <div>
-        
+        {currentUser === null ? null : (
+          <>
+            <h3>Welcome {currentUser.username}</h3>
+            <button onClick={handleClick}>My Diary Page</button>{" "}
+          </>
+        )}
+
+        {toggle && currentUser ? (
+          <DiaryPage currentUser={currentUser} />
+        ) : (
+          history.push("/")
+        )}
       </div>
     </>
   );

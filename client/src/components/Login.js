@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
+import { Form, Button, Segment } from "semantic-ui-react";
 
 function Login({ updateUser }) {
   const [username, setUsername] = useState("");
@@ -28,38 +29,49 @@ function Login({ updateUser }) {
     });
   }
 
-  function onClick() { 
+  function onClick() {
+    history.push("/signup");
+  }
 
     history.push("/signup")
   }
   return (
-  
-    <form onSubmit={handleSubmit}>
-      <label className="usernameLabel" htmlFor="Username">
-        Username
-      </label>
-      <input
-        type="text"
-        id="username"
-        autoComplete="off"
-        value={username}
-        onChange={(e) => setUsername(e.target.value)}
-      />
-      <label className = "passwordLabel" htmlFor="password">Password</label>
-      <input
-        type="password"
-        id="password"
-        autoComplete="current-password"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-      />
-      <button className = "loginButton" variant="fill" color="primary" type="submit">
-        {"Login"}
-      </button>
-      <button className ="signupButton" variant="fill" color="primary" onClick={onClick} type="submit">
-        {"sign up"} 
-      </button>
-    </form>
+    <Segment>
+      <Form onSubmit={handleSubmit}>
+        <Form.Group widths="equal">
+          <label className="usernameLabel" htmlFor="Username">
+            Username
+          </label>
+          <Form.Input
+            type="text"
+            id="username"
+            autoComplete="off"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+          />
+          <label htmlFor="password">Password</label>
+          <Form.Input
+            type="password"
+            id="password"
+            autoComplete="current-password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+        </Form.Group>
+        <Button variant="fill" primary type="submit">
+          Log In
+        </Button>
+        <Button
+          className="signupButton"
+          variant="fill"
+          secondary
+          onClick={onClick}
+          type="submit"
+        >
+          {"Sign Up"}
+        </Button>
+      </Form>
+    </Segment>
   );
 }
 export default Login;
